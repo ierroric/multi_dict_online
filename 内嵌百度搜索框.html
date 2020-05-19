@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>多字典单词搜索</title>
+	<script type="text/javascript">
+		function clickButton() {
+			document.getElementById('button1').click()
+		};
+
+		function search(){
+			//百度搜索接口 https://www.baidu.com/s?q1=#KeyWord&q2=&q3=&q4=&rn=10&lm=0&ct=0&ft=&q5=&q6=#WebSite&tn=baiduadv //baidurt为特殊参数
+			//有道搜索接口 http://dict.youdao.com/w/#KeyWord/#keyfrom=dict2.top
+			var baidu_api = "https://www.baidu.com/s?q1=#KeyWord&q2=&q3=&q4=&rn=10&lm=0&ct=0&ft=&q5=&q6=#WebSite&tn=baiduadv"
+			var youdao_api = "http://dict.youdao.com/w/#KeyWord/#keyfrom=dict2.top"
+
+			var KeyWord = encodeURIComponent(document.getElementById("input_search").value)
+			var WebSite = "etymon.cn"
+			baidu_api = baidu_api.replace(/#WebSite/,WebSite)
+
+			var value_youdao = youdao_api.replace(/#KeyWord/,KeyWord)
+			var value_etymon = baidu_api.replace(/#KeyWord/,KeyWord)
+
+			alert("Button 1 was clicked!"+value_youdao+' '+value_etymon);
+
+			window.open(value_youdao)
+			window.open(value_etymon)
+    		// window.open("http://dict.youdao.com/w/"+value_youdao+"/#keyfrom=dict2.top");
+    		// window.open("https://www.baidu.com/s?wd="+value_search);
+    		
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+    <input id="input_search" type="text" oninput="getSuggestion()" onblur="hiddenSuggestion()" onkeydown="move(event)">                          
+    <div id="suggestion" hidden="hidden">
+        <ul id="suggestionUl"></ul>
+    </div>
+</div>
+<div>
+    <input type="button" id= "button1" value="Search" onclick="search()">
+</div>
+
+
+
+
+</body>
+</html>
