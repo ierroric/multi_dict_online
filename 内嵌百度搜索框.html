@@ -39,12 +39,24 @@
 				search();
 			}
 		}
+
+		function blink(x){
+			if (x.keyCode == 32){//空格选中光标
+    			document.getElementById('input_search').focus()
+			}
+		}
+		function blink2(){
+			document.getElementById('input_search').focus()
+		}
 	</script>
 	<style type="text/css">
 		*{
 			margin: 0;
 			padding: 0;
 			border: none;
+		}
+		html,body{
+			height: 100%
 		}
 		.form{
 			display: inline-block;
@@ -74,7 +86,7 @@
 
 
 </head>
-<body>
+<body onkeydown="blink(event)" onclick = "blink2()" >
 	<div class= "form">
 		<div>
     	<input class= "search_bar" id="input_search" type="text" oninput="getSuggestion()" onblur="hiddenSuggestion()" onkeydown="move(event)">                          
